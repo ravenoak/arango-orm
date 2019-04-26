@@ -33,6 +33,21 @@ class CollectionMeta(type):
         for k in new_fields:
             attrs.pop(k)
 
+        for base in bases:
+            if base.__name__ == 'Collection' or \
+                    base.__name__ == 'CollectionBase':
+                continue
+            for obj_name in dir(base):
+                if obj_name.endswith('__'):
+                    continue
+                obj = getattr(base, obj_name)
+                if isinstance(obj, fields.Field):
+                    # add to schema fields
+                    new_fields[obj_name] = obj
+
+                elif isinstance(obj, (Relationship, GraphRelationship)):
+                    refs[obj_name] = obj
+
         new_class = super_new(mcs, name, bases, attrs)
         new_class._fields = dict(getattr(new_class, '_fields', {}), **new_fields)
         new_class._refs = refs
