@@ -3,12 +3,12 @@ from setuptools import setup, find_packages
 requires = [
     'six',
     'python-arango>=4.0',
-    'marshmallow>=2.10.0'
+    'marshmallow==2.16.0'
 ]
 
 setup(
     name='arango-orm',
-    version='0.5.5',
+    version='0.5.7',
     description='A SQLAlchemy like ORM implementation for arangodb',
     long_description=("A SQLAlchemy like ORM implementation using "
                       " python-arangoas the backend library"),
@@ -18,7 +18,7 @@ setup(
     author='Kashif Iftikhar',
     author_email='kashif@compulife.com.pk',
     url="https://github.com/threatify/arango-orm",
-    download_url="https://github.com/threatify/arango-orm/archive/v0.5.3.tar.gz",
+    download_url="https://github.com/threatify/arango-orm/archive/v0.5.7.tar.gz",
     license="GNU General Public License v3 (GPLv3)",
     keywords='arangodb orm python',
     packages=find_packages(),
